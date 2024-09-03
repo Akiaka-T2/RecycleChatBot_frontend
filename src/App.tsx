@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import './components/CheckBoxContainer.css';
-import { DistrictFlow } from './flows/DistrictFlow';
+import { districtFlow } from './flows/districtFlow';
 
 function App() {
   const [form, setForm] = React.useState<{ district: string }>({
@@ -154,7 +154,7 @@ function App() {
       },
     },
 
-    ...DistrictFlow({ form, setForm }),
+    ...districtFlow({ form, setForm }),
     ...uploadFileFlow({ form, setForm }),
   };
 

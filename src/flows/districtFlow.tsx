@@ -9,7 +9,7 @@ type DistrictFlowProps = {
   setForm: Dispatch<SetStateAction<{ district: string }>>;
 };
 
-export const DistrictFlow = ({ form, setForm }: DistrictFlowProps) => ({
+export const districtFlow = ({ form, setForm }: DistrictFlowProps) => ({
   district_start: {
     message: '안녕하세요! Green Seoul Bot 입니다. \n서울특별시 구별 재활용품 지원정책에 대해 궁금한것이 있다면 무엇이든지 물어보세요.',
     checkboxes: {
