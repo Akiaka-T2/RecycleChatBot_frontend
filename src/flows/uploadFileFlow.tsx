@@ -31,7 +31,7 @@ export const handleUpload = async (params: Params, { form, setForm }: DistrictFl
       console.log('업로드할 파일:', uploadFile);
 
       const response = await axios
-        .post('http://54.180.199.92:8000/chatbot/upload', formData, {
+        .post('http://3.35.192.132:8000/chatbot/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -40,13 +40,12 @@ export const handleUpload = async (params: Params, { form, setForm }: DistrictFl
           },
         })
         // params.userInput = '';
-        // return response;
+        // return response
         .then(response => {
           console.log('uploadfile함수', response);
 
+          setForm({ district: params.userInput, image: params.file });
           form.district = '';
-
-          // setForm({ district: params.userInput, image: params.file });
 
           return response;
         });
@@ -62,7 +61,7 @@ export const handleUpload = async (params: Params, { form, setForm }: DistrictFl
 
 export const uploadFileFlow = ({ form, setForm }: DistrictFlowProps) => ({
   uploadFile_district: {
-    message: '대형 페기물 수거 정보를 알고싶은 구를 선택해 주세요.',
+    message: '대형 페기물 수거 정보를 알고싶은 구를 선택해 주세요. \n(현재 관악구, 동작구, 용산구만 선택가능)',
     checkboxes: {
       items: [
         '강남구',
@@ -206,7 +205,8 @@ export const uploadFileFlow = ({ form, setForm }: DistrictFlowProps) => ({
     path: 'uploadFile_end',
   },
   uploadFile_end: {
-    message: '보내주신 사진의 재활용법 입니다.',
+    streamSpeed: 10,
+    message: '보내주신 사진을 분석하여 정보를 찾고 있습니다. \n잠시만 기다려주세요.',
     function: (params: Params) => {
       setForm({ district: params.userInput });
     },

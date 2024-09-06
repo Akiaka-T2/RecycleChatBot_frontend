@@ -7,34 +7,37 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>Green Seoul Bot</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div class="container">
+      <header>
+        <a href="https://naver.me/5BckqWgX" class="feedback-button-link">
+          <button class="feedback-button">Feedback</button>
+        </a>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+        <a href="https://locrian-pyjama-ded.notion.site/4935f792fa5e411cabe9359c1721e311?pvs=4" class="coffee-button-link">
+          <button class="coffee-button">
+            <img src="../asset/images/recycle-icon.png" alt="Icon" />
+          </button>
+        </a>
+      </header>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+      <div id="image">
+        <img src="../asset/images/background-image.png" alt="서비스 소개 이미지" />
+      </div>
+
+      <footer id="footer">
+        <div class="copyright">
+          <p>©Akiaka 4cycle(B조) All rights reserved.</p>
+        </div>
+
+        <div class="work">
+          <p>2024 미래내일 일경험 SW 엔지니어 트렉</p>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>

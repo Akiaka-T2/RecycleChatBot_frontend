@@ -3,9 +3,9 @@ import { Params } from './types/Params';
 import React, { useRef } from 'react';
 import { uploadFileFlow } from './flows/uploadFileFlow';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import axios from 'axios';
-import './components/CheckBoxContainer.css';
+import './styles/chatbotStyle.css';
+import './styles/backgroundStyle.css';
 import { districtFlow } from './flows/districtFlow';
 
 function App() {
@@ -14,8 +14,7 @@ function App() {
   });
   // console.log('form', form);
   const settings = {
-    // isOpen : 오픈형식
-    isOpen: true,
+    isOpen: false,
     general: {
       fontFamily: 'Pretendard-Regular',
       primaryColor: '#304D30',
@@ -44,14 +43,15 @@ function App() {
     botBubble: {
       showAvatar: true,
       avatar: 'https://img.icons8.com/?size=100&id=13446&format=png&color=000000',
-
-      streamSpeed: 30,
+      simStream: true,
+      streamSpeed: 60,
     },
     notification: {
       disabled: true,
     },
     chatInput: {
       enabledPlaceholderText: '메세지를 입력해주세요.',
+      botDelay: 1500,
     },
     fileAttachment: {
       showMediaDisplay: true,
@@ -63,7 +63,7 @@ function App() {
       text: (
         <div>
           <span>Team </span>
-          <span style={{ fontWeight: 'bold' }}>4Cycle</span>
+          <span style={{ fontWeight: 'bold' }}>4cycle</span>
         </div>
       ),
     },
@@ -72,10 +72,10 @@ function App() {
     },
   };
 
-  const helpOptions = ['사용방법', '재활용품 지원정책', '이미지로 대형폐기물 배출 안내'];
-  const howToReCycle = ['재활용품 지원 정책', '이미지로 대형폐기물 배출 안내'];
-
   const inputTextRef = useRef('');
+
+  const helpOptions = ['사용방법', '재활용품 지원정책', '이미지로 대형폐기물 수수료 알아보기'];
+  const howToReCycle = ['재활용품 지원 정책', '이미지로 대형폐기물 수수료 알아보기'];
 
   const flow = {
     start: {
@@ -91,7 +91,7 @@ function App() {
             return 'middle';
           case '재활용품 지원정책':
             return 'district_start';
-          case '이미지로 대형폐기물 배출 안내':
+          case '이미지로 대형폐기물 수수료 알아보기':
             return 'uploadFile_district';
           default:
             return 'communicate';
@@ -102,6 +102,9 @@ function App() {
     middle: {
       message:
         '저는 재활용품과 관련된 여러분들의 궁금증을 해결해 드리는 Green Seoul Bot입니다. \n\n재활용품 지원 정책이나 버리고자 하는 대형폐기물의 사진을 올려주시면 제가 알려드릴게요! \n\n<Green Seoul Bot의 기능> \n1. 재활용품 지원정책 안내 \n정책정보를 확인 할 지역구를 선택하거나 메세지로 입력하시면 해당 지역구에서 시행하는 정책정보를 알려드려요. \n\n2. 물건 분리배출 방법 안내 \n버리고자 하는 대형폐기물의 사진을 첨부하시면 사진을 분석하여 해당 폐기물의 구별 수수료를 알려드려요.',
+      function: (params: Params) => {
+        setForm({ district: params.userInput });
+      }, // 추가
       options: howToReCycle,
       path: 'how_to_recycle',
     },
@@ -112,7 +115,7 @@ function App() {
         switch (params.userInput) {
           case '재활용품 지원 정책':
             return 'district_start';
-          case '이미지로 대형폐기물 배출 안내':
+          case '이미지로 대형폐기물 수수료 알아보기':
             return 'uploadFile_district';
           default:
             return 'communicate';
@@ -123,14 +126,12 @@ function App() {
     communicate: {
       function: (params: Params) => {
         setForm({ district: params.userInput });
-        // 추가
-        // params.userInput = '';
       },
       message: async (params: Params) => {
         console.log(params);
         // 이미지로 대형폐기물 배출 안내
         // if (params.prevPath === 'uploadFile_end') return;
-        const url = 'http://54.180.199.92:8000/chatbot/chat';
+        const url = 'http://3.35.192.132:8000/chatbot/chat';
         const user_input = form.district;
         try {
           const response = await axios.post(url, { user_input: user_input }).then(response => {
@@ -160,11 +161,9 @@ function App() {
 
   return (
     <>
-      <Container>
-        <Box>
-          <ChatBot settings={settings} flow={flow} />
-        </Box>
-      </Container>
+      <Box>
+        <ChatBot settings={settings} flow={flow} />
+      </Box>
     </>
   );
 }
