@@ -33,7 +33,9 @@ function App() {
     header: {
       title: (
         <div className="header-container" style={{ display: 'flex' }}>
-          <div style={{ color: '#163020', fontSize: '28px', fontWeight: '600' }}>Green Seoul Bot</div>
+          <div className="header-title" style={{ color: '#163020', fontSize: '28px', fontWeight: '600' }}>
+            Green Seoul Bot
+          </div>
         </div>
       ),
       avatar: '',

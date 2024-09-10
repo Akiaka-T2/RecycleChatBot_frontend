@@ -1,14 +1,80 @@
+/* 노트북 & 테블릿 가로 (해상도 1024px ~ 1279px)*/
+@media all and (min-width: 1024px) and (max-width: 1279px) {
+  .rcb-chat-window {
+    width: 400px !important;
+    height: 650px !important;
+  }
+}
+
+/* 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .rcb-chat-window {
+    width: 400px !important;
+    height: 650px !important;
+  }
+}
+
+/* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .rcb-chat-window {
+    width: 350px !important;
+    height: 610px !important;
+  }
+  .header-title {
+    font-size: 23px !important;
+  }
+  .rcb-chat-header-container {
+    padding: 10px 12px 0px 25px !important;
+  }
+  .rcb-toggle-icon {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  .rcb-toggle-button {
+    background-image: none !important;
+    width: 65px !important;
+    height: 65px !important;
+  }
+  .rcb-chat-tooltip.rcb-tooltip-show {
+    right: 105px !important;
+    bottom: 20px !important;
+    padding: 14px 16px 14px 16px !important;
+  }
+}
+
+/* 모바일 세로 (해상도 ~ 479px)*/
+@media screen and (max-width: 479px) {
+  .rcb-chat-window {
+    width: 300px !important;
+    height: 500px !important;
+  }
+  .header-title {
+    font-size: 20px !important;
+  }
+  .rcb-chat-header-container {
+    padding: 10px 12px 0px 22px !important;
+  }
+  .rcb-toggle-icon {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  .rcb-toggle-button {
+    background-image: none !important;
+    width: 65px !important;
+    height: 65px !important;
+  }
+  .rcb-chat-tooltip.rcb-tooltip-show {
+    right: 105px !important;
+    bottom: 20px !important;
+    padding: 14px 16px 14px 16px !important;
+  }
+}
+
 * {
   font-family: 'Pretendard-Regular' !important;
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff') !important;
   font-style: normal !important;
 }
-
-/* @media only screen and (max-width: 600px) {
-  .rcb-chat-window {
-    background-color: lightblue;
-  }
-} */
 
 .rcb-toggle-icon {
   background-image: url('../../public/asset/images/recycle-icon.png') !important;
@@ -18,6 +84,8 @@
 }
 
 .rcb-chat-window {
+  /* width: 400px !important;
+  height: 650px !important; */
   box-shadow:
     rgba(255, 255, 255, 0.12) 0px 0px 2px 0px inset,
     rgba(0, 0, 0, 0.05) 0px 0px 2px 1px,
@@ -56,11 +124,6 @@
   display: flex !important;
   align-items: flex-start;
   justify-content: center !important;
-}
-
-.rcb-chat-window {
-  width: 400px !important;
-  height: 650px !important;
 }
 
 /* 헤더 */
