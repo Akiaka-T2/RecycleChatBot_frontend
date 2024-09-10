@@ -12,6 +12,14 @@ function App() {
   const [form, setForm] = React.useState<{ district: string }>({
     district: '',
   });
+
+  const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+  const URL = `${PROXY}/`;
+
+  axios.get(URL, {
+    // ...
+  });
+
   // console.log('form', form);
   const settings = {
     isOpen: false,
