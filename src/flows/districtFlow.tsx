@@ -9,6 +9,8 @@ type DistrictFlowProps = {
   setForm: Dispatch<SetStateAction<{ district: string }>>;
 };
 
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
 export const districtFlow = ({ form, setForm }: DistrictFlowProps) => ({
   district_start: {
     message: '안녕하세요! Green Seoul Bot 입니다. \n서울특별시 구별 재활용품 지원정책에 대해 궁금한것이 있다면 무엇이든지 물어보세요.',
@@ -64,7 +66,7 @@ export const districtFlow = ({ form, setForm }: DistrictFlowProps) => ({
       setForm({ district: params.userInput });
     },
     component: async (params: Params) => {
-      const url = 'http://3.35.192.132:8000/chatbot/policy';
+      const url = `${PROXY}/chatbot/policy`;
       const district_name = params.userInput;
       console.log('district_name', params.userInput);
       try {

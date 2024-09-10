@@ -9,6 +9,8 @@ type DistrictFlowProps = {
   setForm: React.Dispatch<React.SetStateAction<{ district: string; image?: string }>>;
 };
 
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+
 export const handleUpload = async (params: Params, { form, setForm }: DistrictFlowProps) => {
   const uploadFile = params.file;
 
@@ -31,7 +33,7 @@ export const handleUpload = async (params: Params, { form, setForm }: DistrictFl
       console.log('업로드할 파일:', uploadFile);
 
       const response = await axios
-        .post('http://3.35.192.132:8000/chatbot/upload', formData, {
+        .post(`${PROXY}/chatbot/upload`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
