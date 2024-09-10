@@ -1,5 +1,15 @@
 [[redirects]]
-  from = "/proxy/*"
+  from = "/api/*"
   to = "https://main--greenseoulbot.netlify.app/:splat"
   status = 200
   force = true
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[[headers]]
+for = "/*"
+[headers.values]
+  Referrer-Policy = "no-referrer-when-downgrade"

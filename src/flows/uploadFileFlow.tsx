@@ -33,7 +33,7 @@ export const handleUpload = async (params: Params, { form, setForm }: DistrictFl
       console.log('업로드할 파일:', uploadFile);
 
       const response = await axios
-        .post(`${PROXY}/chatbot/upload`, formData, {
+        .post('http://3.35.192.132:8000/chatbot/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

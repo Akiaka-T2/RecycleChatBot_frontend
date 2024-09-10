@@ -9,7 +9,7 @@ type DistrictFlowProps = {
   setForm: Dispatch<SetStateAction<{ district: string }>>;
 };
 
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+// const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 export const districtFlow = ({ form, setForm }: DistrictFlowProps) => ({
   district_start: {
@@ -66,7 +66,7 @@ export const districtFlow = ({ form, setForm }: DistrictFlowProps) => ({
       setForm({ district: params.userInput });
     },
     component: async (params: Params) => {
-      const url = `${PROXY}/chatbot/policy`;
+      const url = 'http://3.35.192.132:8000/chatbot/policy';
       const district_name = params.userInput;
       console.log('district_name', params.userInput);
       try {
