@@ -22,16 +22,11 @@ export const handleUpload = async (params: Params, { form, setForm }: DistrictFl
     // 디버깅을 위한 FormData 내용 출력 (Array.from 사용)
     Array.from(formData.entries()).forEach(([key, value]) => {
       if (typeof value === 'string') {
-        // console.log(`${key}: ${value} (string)`);
       } else if (value instanceof File) {
-        // console.log(`${key}: ${value.name} (File)`);
       }
     });
 
     try {
-      console.log('지역 이름:', form.district);
-      console.log('업로드할 파일:', uploadFile);
-
       const response = await axios
         .post('http://3.35.192.132:8000/chatbot/upload', formData, {
           headers: {
@@ -41,18 +36,12 @@ export const handleUpload = async (params: Params, { form, setForm }: DistrictFl
             district_name: form.district,
           },
         })
-        // params.userInput = '';
-        // return response
         .then(response => {
-          console.log('uploadfile함수', response);
-
           setForm({ district: params.userInput, image: params.file });
           form.district = '';
-
           return response;
         });
-      // console.log('서버 응답:', response.data);
-      return response; // 응답을 반환합니다.
+      return response;
     } catch (error) {
       console.error('파일 업로드 중 에러 발생:', error);
     }
@@ -97,7 +86,6 @@ export const uploadFileFlow = ({ form, setForm }: DistrictFlowProps) => ({
     },
     function: async (params: Params) => {
       setForm({ ...form, district: params.userInput });
-      console.log('form', form);
     },
     path: 'uploadFile_start',
   },
@@ -105,24 +93,6 @@ export const uploadFileFlow = ({ form, setForm }: DistrictFlowProps) => ({
   uploadFile_start: {
     message: '사진을 업로드 해주세요!',
     chatDisabled: true,
-    // function: (params: Params) => {
-    //   setForm({ district: params.userInput, image: params.file });
-    // },
-    // file: async (params: Params) => {
-    //   function getBaseUrl() {
-    //     const file = params?.files?.[0] as File;
-    //     const reader = new FileReader();
-    //     let baseString: any;
-    //     reader.onloadend = function () {
-    //       baseString = reader.result;
-    //       setForm(form => ({ ...form, file: baseString }));
-    //     };
-    //     reader.readAsDataURL(file);
-
-    //     return baseString;
-    //   }
-    //   getBaseUrl();
-    // },
     file: async (params: Params) => {
       try {
         const file = params?.files?.[0] as File;
@@ -140,42 +110,18 @@ export const uploadFileFlow = ({ form, setForm }: DistrictFlowProps) => ({
             'base64', // 출력 타입
           );
         });
-
-        // Update the form with the resized image
         setForm(form => ({ ...form, file: image }));
-        console.log(file);
-
         return image;
       } catch (error) {
         console.error('Error resizing the image:', error);
-        // Handle the error appropriately here, e.g., set an error state
       }
     },
-
     path: 'uploadFile_end',
   },
+
   re_upload: {
     message: '다른 사진을 업로드 해주세요!',
     chatDisabled: true,
-    // function: (params: Params) => {
-    //   setForm({ district: params.userInput, image: params.file });
-    // },
-    // file: async (params: Params) => {
-    //   function getBaseUrl() {
-    //     const file = params?.files?.[0] as File;
-    //     const reader = new FileReader();
-    //     let baseString: any;
-    //     reader.onloadend = function () {
-    //       baseString = reader.result;
-    //       setForm(form => ({ ...form, file: baseString }));
-    //     };
-    //     reader.readAsDataURL(file);
-
-    //     return baseString;
-    //   }
-    //   getBaseUrl();
-    // },
-
     file: async (params: Params) => {
       try {
         const file = params?.files?.[0] as File;
@@ -193,19 +139,15 @@ export const uploadFileFlow = ({ form, setForm }: DistrictFlowProps) => ({
             'base64', // 출력 타입
           );
         });
-
-        // Update the form with the resized image
         setForm(form => ({ ...form, file: image }));
-        console.log(file);
         return image;
       } catch (error) {
         console.error('Error resizing the image:', error);
-        // Handle the error appropriately here, e.g., set an error state
       }
     },
-
     path: 'uploadFile_end',
   },
+
   uploadFile_end: {
     streamSpeed: 10,
     message: '보내주신 사진을 분석하여 정보를 찾고 있습니다. \n잠시만 기다려주세요.',
@@ -225,7 +167,6 @@ export const uploadFileFlow = ({ form, setForm }: DistrictFlowProps) => ({
         </Box>
       );
     },
-
     options: ['다른사진 업로드 하기', '처음으로'],
     chatDisabled: false,
     path: (params: Params) => {

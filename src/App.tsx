@@ -13,9 +13,6 @@ function App() {
     district: '',
   });
 
-  // const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
-
-  // console.log('form', form);
   const settings = {
     isOpen: false,
     general: {
@@ -109,7 +106,7 @@ function App() {
         '저는 재활용품과 관련된 여러분들의 궁금증을 해결해 드리는 Green Seoul Bot입니다. \n\n재활용품 지원 정책이나 버리고자 하는 대형폐기물의 사진을 올려주시면 제가 알려드릴게요! \n\n<Green Seoul Bot의 기능> \n1. 재활용품 지원정책 안내 \n정책정보를 확인 할 지역구를 선택하거나 메세지로 입력하시면 해당 지역구에서 시행하는 정책정보를 알려드려요. \n\n2. 물건 분리배출 방법 안내 \n버리고자 하는 대형폐기물의 사진을 첨부하시면 사진을 분석하여 해당 폐기물의 구별 수수료를 알려드려요.',
       function: (params: Params) => {
         setForm({ district: params.userInput });
-      }, // 추가
+      },
       options: howToReCycle,
       path: 'how_to_recycle',
     },
@@ -133,14 +130,10 @@ function App() {
         setForm({ district: params.userInput });
       },
       message: async (params: Params) => {
-        console.log(params);
-        // 이미지로 대형폐기물 배출 안내
-        // if (params.prevPath === 'uploadFile_end') return;
         const url = 'http://3.35.192.132:8000/chatbot/chat';
         const user_input = form.district;
         try {
           const response = await axios.post(url, { user_input: user_input }).then(response => {
-            console.log(response);
             form.district = '';
             return response.data.message;
           });

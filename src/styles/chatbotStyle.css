@@ -4,6 +4,13 @@
     width: 400px !important;
     height: 650px !important;
   }
+  .rcb-checkbox-next-button {
+    width: 92% !important;
+  }
+  .rcb-chat-tooltip.rcb-tooltip-show {
+    right: 115px !important;
+    bottom: 25px !important;
+  }
 }
 
 /* 테블릿 가로 (해상도 768px ~ 1023px)*/
@@ -12,13 +19,20 @@
     width: 400px !important;
     height: 650px !important;
   }
+  .rcb-checkbox-next-button {
+    width: 92% !important;
+  }
+  .rcb-chat-tooltip.rcb-tooltip-show {
+    right: 115px !important;
+    bottom: 25px !important;
+  }
 }
 
 /* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/
 @media screen and (min-width: 480px) and (max-width: 767px) {
   .rcb-chat-window {
     width: 350px !important;
-    height: 610px !important;
+    height: 550px !important;
   }
   .header-title {
     font-size: 23px !important;
@@ -40,6 +54,9 @@
     bottom: 20px !important;
     padding: 14px 16px 14px 16px !important;
   }
+  .rcb-checkbox-next-button {
+    width: 70% !important;
+  }
 }
 
 /* 모바일 세로 (해상도 ~ 479px)*/
@@ -55,18 +72,24 @@
     padding: 10px 12px 0px 22px !important;
   }
   .rcb-toggle-icon {
-    width: 60px !important;
-    height: 60px !important;
+    width: 50px !important;
+    height: 50px !important;
   }
   .rcb-toggle-button {
     background-image: none !important;
-    width: 65px !important;
-    height: 65px !important;
+    width: 55px !important;
+    height: 55px !important;
   }
   .rcb-chat-tooltip.rcb-tooltip-show {
-    right: 105px !important;
+    right: 95px !important;
     bottom: 20px !important;
-    padding: 14px 16px 14px 16px !important;
+    padding: 10px 12px 10px 12px !important;
+  }
+  .rcb-checkbox-next-button {
+    width: 82% !important;
+  }
+  .rcb-chat-tooltip-tail {
+    right: -9px !important;
   }
 }
 
@@ -84,8 +107,6 @@
 }
 
 .rcb-chat-window {
-  /* width: 400px !important;
-  height: 650px !important; */
   box-shadow:
     rgba(255, 255, 255, 0.12) 0px 0px 2px 0px inset,
     rgba(0, 0, 0, 0.05) 0px 0px 2px 1px,
@@ -118,7 +139,7 @@
 }
 
 .rcb-checkbox-next-button {
-  width: 92% !important;
+  /* width: 92% !important; */
   color: #b6c4b6 !important;
   border-color: #b6c4b6 !important;
   display: flex !important;
